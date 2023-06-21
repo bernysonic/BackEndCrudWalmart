@@ -13,17 +13,37 @@ namespace BackEndCrudWalmart.Services.Implementacion
             _dbContext = dbContext;
         }
 
-        public Task<AtCatProduct> Add(AtCatProduct modelo)
+        public async Task<AtCatProduct> Add(AtCatProduct modelo)
         {
-            throw new NotImplementedException();//3155
+            try
+            {
+                _dbContext.AtCatProducts.Add(modelo);
+                await _dbContext.SaveChangesAsync();
+                return modelo;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        public Task<bool> Delete(AtCatProduct modelo)
+        public async Task<bool> Delete(AtCatProduct modelo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContext.AtCatProducts.Remove(modelo);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        public async Task<AtCatProduct> Get(int idEmpleado)
+        public async Task<AtCatProduct> Get(int idProducto)
         {
             try
             {
@@ -55,9 +75,19 @@ namespace BackEndCrudWalmart.Services.Implementacion
             }
         }
 
-        public Task<bool> Update(AtCatProduct modelo)
+        public async Task<bool> Update(AtCatProduct modelo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContext.AtCatProducts.Update(modelo);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
